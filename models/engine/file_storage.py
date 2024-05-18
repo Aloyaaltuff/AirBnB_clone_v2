@@ -26,6 +26,8 @@ class FileStorage:
          Sets an object in the __objects dictionary with a key of 
          <obj class name>.id.
         """
+        storage = FileStorage()
+
         obj_cls_name = obj.__class__.__name__
 
         key = "{}.{}".format(obj_cls_name, obj.id)

@@ -7,9 +7,9 @@ from datetime import datetime
 class BaseModel:
 
     def __init__(self, *args, **kwargs):
-            self.id = str(uuid.uuid4())
-            self.created_at = datetime.now()
-            self.updated_at = datetime.now()
+        self.id = str(uuid.uuid4())
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
 
     def __str__(self):
         """a method that print class name, id"""
@@ -32,7 +32,6 @@ class BaseModel:
         return inst_dict
 
 
-
 if __name__ == "__main__":
 
     my_model = BaseModel()
@@ -42,14 +41,14 @@ if __name__ == "__main__":
     print(my_model)
     print(type(my_model.created_at))
     print("--")
-    my_model_json = my_model.to_dict()
-    print(my_model_json)
+    m_json = my_model.to_dict()
+    print(m_json)
     print("JSON of my_model:")
-    for key in my_model_json.keys():
-        print("\t{}: ({}) - {}".format(key, type(my_model_json[key]), my_model_json[key]))
+    for key in m_json.keys():
+        print("\t{}: ({}) - {}".format(key, type(m_json[key]), m_json[key]))
 
     print("--")
-    my_new_model = BaseModel(**my_model_json)
+    my_new_model = BaseModel(**m_json)
     print(my_new_model.id)
     print(my_new_model)
     print(type(my_new_model.created_at))

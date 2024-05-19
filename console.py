@@ -28,6 +28,11 @@ class HBNBCommand(cmd.Cmd):
         """Do nothing when empty line is entered"""
         pass
 
+    def help_quit(self):
+        """help message for quit"""
+        print("Quit command to exit the program\n")
+        return
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()

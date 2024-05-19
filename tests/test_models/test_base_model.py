@@ -51,6 +51,28 @@ class TestBasemodel(unittest.TestCase):
 
         self.assertIn(instanc.id, str(instanc))
 
+    def tearDown(self):
+        """
+        Tear down for temporary file path
+        """
+        try:
+            os.remove("file.json")
+        except FileNotFoundError:
+            pass
+        try:
+            os.rename("tmp.json", "file.json")
+        except FileNotFoundError:
+            pass
+
+    def setUp(self):
+        """
+        Setup for temporary file path
+        """
+        try:
+            os.rename("file.json", "tmp.json")
+        except FileNotFoundError:
+            pass
+
 
 if __name__ == "__main__":
     unittest.main()

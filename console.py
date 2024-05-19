@@ -13,38 +13,40 @@ class HBNBCommand(cmd.Cmd):
     def do_quit(self, line):
         """quit the interpreter"""
         return True
-    
+
     def do_EOF(self, line):
         """exits the interpreter cleanly"""
         print()
         pass
-    
+
     def help_quit(self):
         """help message for quit"""
         print("Quit is a command to exit the program\n")
         return
-   
+
     def emptyline(self):
         """Do nothing when empty line is entered"""
         pass
 
     def do_create(self, line):
-        """Creates a new instance of BaseModel, saves it (to the JSON), prints the id."""
+        """Creates a new instance of BaseModel,
+        saves it (to the JSON), prints the id."""
         args = line.split()
         if not args:
             print("** class doesn't exist **")
             return
-        
+
     my_name = args[0]
     if my_name not in storage.classes():
         print("** class name missing **")
         pass
 
     elif my_name in storage.classes():
-            obj = storage.classes()[my_name]()
-            obj.save()
-            print(obj.id)
-            pass
+        obj = storage.classes()[my_name]()
+        obj.save()
+        print(obj.id)
+        pass
+
     def do_show(self, line):
         """Prints the string representation of an instance based on the class
         name and id. Ex: $ show BaseModel 1234-1234-1234."""
@@ -73,8 +75,7 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("** no instance found **")
                 return False
-            
-     
+
     def do_destroy(self, arg):
         """
         Delete an instance based on the class name and id.
@@ -142,7 +143,6 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** class name missing **")
 
-
     def do_update(self, line):
         """Updates an instance by adding or updating attribute.
         """
@@ -186,11 +186,10 @@ class HBNBCommand(cmd.Cmd):
                     try:
                         value = cast(value)
                     except ValueError:
-                        pass  
+                        pass
                 setattr(storage.all()[key], attribute, value)
                 storage.all()[key].save()
 
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
-    

@@ -28,8 +28,8 @@ class HBNBCommand(cmd.Cmd):
         """Do nothing when empty line is entered"""
         pass
         """ def do_create(self, line):
-        """Creates a new instance of BaseModel,
-        saves it (to the JSON), prints the id."""
+        Creates a new instance of BaseModel,
+        saves it (to the JSON), prints the id.
         args = line.split()
         if not args:
             print("** class doesn't exist **")

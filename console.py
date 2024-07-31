@@ -22,7 +22,7 @@ class HBNBCommand(cmd.Cmd):
 
     def help_quit(self):
         """help message for quit"""
-        print("Quit is a command to exit the program\n")
+        print("Quit command to exit the program\n")
         return
 
     def emptyline(self):

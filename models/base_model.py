@@ -8,9 +8,28 @@ from datetime import datetime
 class BaseModel:
 
     def __init__(self, *args, **kwargs):
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
+        if kwargs:
+            for key, value in kwargs.items():
+                if key == "__class__":
+                    continue
+
+                if key in ['created_at', 'updated_at']:
+                    setattr(self, key, datetime.fromisoformat(value))
+                else:
+                    setattr(self, key, value)
+
+            
+            if 'id' not in kwargs:
+                self.id = str(uuid.uuid4())
+            if 'created_at' not in kwargs:
+                self.created_at = datetime.now()
+            if 'updated_at' not in kwargs:
+                self.updated_at = datetime.now()
+
+        else:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
 
     def __str__(self):
         """a method that print class name, id"""

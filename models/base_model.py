@@ -3,7 +3,8 @@ import uuid
 from datetime import datetime
 
 """the class that all classes will inherit from"""
-
+storage = FileStorage()
+storage.reload()
 
 class BaseModel:
 
@@ -18,18 +19,12 @@ class BaseModel:
                 else:
                     setattr(self, key, value)
 
-            
-            if 'id' not in kwargs:
-                self.id = str(uuid.uuid4())
-            if 'created_at' not in kwargs:
-                self.created_at = datetime.now()
-            if 'updated_at' not in kwargs:
-                self.updated_at = datetime.now()
 
         else:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
+            storage.new(self)
 
     def __str__(self):
         """a method that print class name, id"""
@@ -39,6 +34,7 @@ class BaseModel:
     def save(self):
         """updats updated_at"""
         self.updated_at = datetime.now()
+        storage.save()
 
     def to_dict(self):
         """returns a dictionary containing all

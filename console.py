@@ -1,8 +1,6 @@
 #!/usr/bin/python3
 """ the entry point propgramm of the command interpreter"""
 import cmd
-from models.base_model import BaseModel
-from models import storage
 import re
 import json
 
@@ -18,7 +16,7 @@ class HBNBCommand(cmd.Cmd):
     def do_EOF(self, line):
         """exits the interpreter cleanly"""
         print()
-        pass
+        return True
 
     def help_quit(self):
         """help message for quit"""
@@ -31,6 +29,10 @@ class HBNBCommand(cmd.Cmd):
     def enter(self):
         """Do nothing when enter is entered"""
         pass
+
+    def default(self, line):
+        """Handle unrecognized commands"""
+        print(f"*** Unknown syntax: {line}")
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
